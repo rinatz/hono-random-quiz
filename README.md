@@ -1,7 +1,6 @@
 # hono-random-quiz
 
-学習用に作成した Hono / React 製ランダムクイズアプリです。
-ラノベのタイトルが実在するか AI が考えたものかを当てるクイズです。
+ラノベのタイトルが実在するか AI が考えたものかを当てる、学習用に作成した Hono / React 製クイズアプリです。
 
 https://hono-random-quiz.rinatz.workers.dev/
 
