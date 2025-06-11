@@ -51,7 +51,7 @@ const App = () => {
 
   if (lightNovel === null) {
     return (
-      <div className="min-h-screen bg-pink-50 flex flex-col items-center justify-center p-6">
+      <div className="fixed inset-0 bg-pink-50 flex flex-col items-center justify-center p-6 overflow-auto">
         <div className="bg-white rounded-3xl shadow-xl p-8 max-w-md w-full text-center border-4 border-pink-200">
           <div className="text-6xl mb-4">📚</div>
           <h2 className="text-2xl md:text-3xl font-bold text-pink-800 mb-6 leading-relaxed">
@@ -72,8 +72,8 @@ const App = () => {
     );
   } else {
     return (
-      <div className="min-h-screen bg-pink-50 flex flex-col items-center justify-center p-6">
-        <div className="bg-white rounded-3xl shadow-xl p-8 max-w-2xl w-full text-center border-4 border-pink-200">
+      <div className="fixed inset-0 bg-pink-50 flex flex-col items-center justify-center p-6 overflow-auto">
+        <div className="bg-white rounded-3xl shadow-xl p-8 max-w-2xl w-full text-center border-4 border-pink-200 max-h-full overflow-y-auto">
           {/* タイトル表示部分 */}
           <div className="mb-8">
             <div className="text-4xl mb-4">📖</div>
