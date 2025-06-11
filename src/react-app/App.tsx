@@ -17,6 +17,12 @@ const App = () => {
 
   const fetchLightNovel = async (id: number) => {
     const response = await fetch(`/api/light_novels/${id}`);
+
+    if (!response.ok) {
+      console.error(`Error fetching light novel with ID:${id}`);
+      return;
+    }
+
     setLightNovel((await response.json()) as LightNovel);
   };
 
