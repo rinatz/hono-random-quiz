@@ -13,15 +13,14 @@ app.get("/api/light_novels/:id", async (c) => {
     return c.json({ error: "Light novel ID is required" }, 400);
   }
 
-  const db = c.env.DB;
-
-  const { results } = await db
-    .prepare("SELECT * FROM light_novels WHERE id = ?")
+  const { results } = await c.env.DB.prepare(
+    "SELECT * FROM light_novels WHERE id = ?"
+  )
     .bind(id)
     .all();
 
   if (!results) {
-    return c.json({ error: "" }, 400);
+    return c.json({ error: `Light novel with ID:${id} is not found` }, 404);
   }
 
   return c.json({
