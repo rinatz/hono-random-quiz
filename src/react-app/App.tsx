@@ -7,20 +7,16 @@ interface LightNovel {
   isRealTitle: boolean;
 }
 
-const getRandomInt = (max: number): number => {
-  return Math.floor(Math.random() * (max - 1)) + 1;
-};
-
 const App = () => {
   const [lightNovel, setLightNovel] = useState<LightNovel | null>(null);
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
   const [showAnswer, setShowAnswer] = useState<boolean>(false);
 
-  const fetchLightNovel = async (id: number) => {
-    const response = await fetch(`/api/light_novels/${id}`);
+  const fetchRandomLightNovel = async () => {
+    const response = await fetch("/api/light_novels/_random");
 
     if (!response.ok) {
-      console.error(`Error fetching light novel with ID:${id}`);
+      console.error("Error fetching light novel");
       return;
     }
 
@@ -42,7 +38,7 @@ const App = () => {
 
     setTimeout(async () => {
       // 次のクイズを取得
-      await fetchLightNovel(getRandomInt(100));
+      await fetchRandomLightNovel();
 
       setIsCorrect(false);
       setShowAnswer(false);
@@ -61,10 +57,7 @@ const App = () => {
             <br />
             <span className="title-indigo">AIが考えた？</span>
           </h2>
-          <button
-            onClick={() => fetchLightNovel(getRandomInt(100))}
-            className="start-button"
-          >
+          <button onClick={() => fetchRandomLightNovel()} className="start-button">
             ✨ スタート ✨
           </button>
         </div>

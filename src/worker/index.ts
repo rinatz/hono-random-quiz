@@ -6,21 +6,13 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-app.get("/api/light_novels/:id", async (c) => {
-  const id = c.req.param("id");
-
-  if (!id) {
-    return c.json({ error: "Light novel ID is required" }, 400);
-  }
-
+app.get("/api/light_novels/_random", async (c) => {
   const { results } = await c.env.DB.prepare(
-    "SELECT * FROM light_novels WHERE id = ?"
-  )
-    .bind(id)
-    .all();
+    "SELECT * FROM light_novels ORDER BY RANDOM() LIMIT 1"
+  ).all();
 
-  if (!results) {
-    return c.json({ error: `Light novel with ID:${id} is not found` }, 404);
+  if (!results || results.length === 0) {
+    return c.json({ error: "No light novels found" }, 404);
   }
 
   return c.json({
